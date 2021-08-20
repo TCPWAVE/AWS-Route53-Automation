@@ -7,4 +7,5 @@ To achieve this, we will be utilizing the capability of AWS functionalities name
 # Implementation Details 
 
 This section describes the steps to follow on IPAM as well as AWS to do the necessary set up for the automation. 
+    
     Actions to be performed in the IPAM UI are listed below. 
