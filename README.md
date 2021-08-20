@@ -45,3 +45,4 @@ Actions to be performed in the AWS console are listed below
          c. Cloudwatch Logs: Enable cloudwatch logs. Enter a log group name or keep the default. Select IAM role as Existing and choose  CloudTrail_CloudWatchLogs_Role.           
          d. Click Next. 
          e. Click Next. Click Create trail. 
+   ![aws1](https://user-images.githubusercontent.com/56577268/130194231-93312dd6-48eb-4e04-a1a9-186adf97ac5c.png)
