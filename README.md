@@ -10,13 +10,12 @@ This section describes the steps to follow on IPAM as well as AWS to do the nece
 Actions to be performed in the IPAM UI are listed below. 
     
    ## 1. Upload the Appliance certificate to the IPAM. 
-   The server(appliance) certificate and client(user) certificate must be uploaded to IPAM to enable SSL authentication for rest API access from AWS Lambda.      Self-signed certificates are provided for quick set up. The commands used to create self-signed certificates are provided in step 3. 
+   The server(appliance) certificate and client(user) certificate must be uploaded to IPAM to enable SSL authentication for rest API access from AWS Lambda. Self-signed certificates are provided for quick set up. The commands used to create self-signed certificates are provided in step 3. 
 
-          a. Navigate to **Administration** --> **Security Management** --> **Appliance Certificates**. 
-          b. Click **Import** and a dialog opens. 
-          c. Browse **Certificate File** (rootCA.crt), Private Key File(rootCA.key). 
-          d. Enter Private Key Password(abc123), Certificate Storage Password (default password will be provided on request. 
-               This password can be changed by clicking Change Storage Password in the same page). 
+          a. Navigate to Administration --> Security Management --> Appliance Certificates. 
+          b. Click Import and a dialog opens. 
+          c. Browse Certificate File (rootCA.crt), Private Key File(rootCA.key). 
+          d. Enter Private Key Password(abc123), Certificate Storage Password (default password will be provided on request. This password can be changed by clicking Change                  Storage Password in the same page). 
           e. Select Trust CA and upload the certificate. 
           f. Restart tims service. 
    ## 2. Upload the User certificate to the IPAM.
