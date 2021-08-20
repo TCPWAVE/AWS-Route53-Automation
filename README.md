@@ -45,9 +45,8 @@ This section describes the steps to follow on IPAM as well as AWS to do the nece
           d. Click Next. 
           e. Click Next. Click Create trail.
          
-   ![aws1](https://user-images.githubusercontent.com/56577268/130236031-6b1a5345-e361-4558-bb17-4afbf190169f.PNG)
-   
-   ![aws2](https://user-images.githubusercontent.com/56577268/130194710-11158d4f-7c57-4bf1-b617-a23edabc89cd.png)
+   ![aws1](https://user-images.githubusercontent.com/56577268/130237089-a19007b6-ad68-4cf3-927e-531c0cd8d066.PNG)
+   ![aws2](https://user-images.githubusercontent.com/56577268/130236939-07022d73-1f1d-4ad5-9e80-ff377cde863f.PNG)
    
    2. **Create a Lambda function in N.Virginia region**. This function has the node js (14.x version) code that takes input from cloudwatch rule (will be created in the next step) and invokes rest API of TCPWave IPAM to add or delete the resource record based on the action(add/delete), using SSL authentication using certificates.
    
@@ -62,11 +61,9 @@ This section describes the steps to follow on IPAM as well as AWS to do the nece
           i. Change Timeout to 3min and 30sec and click Save.
           j. Under Code tab, Select .zip file option from Upload File dropdown. Browse the r53_function.zip file provided. Click Save and click Ok.
 
-   ![aws3](https://user-images.githubusercontent.com/56577268/130195984-9306dc05-e4c4-4c4d-acee-09f1ee06a0a1.png)
-
-   ![aws4](https://user-images.githubusercontent.com/56577268/130195998-b4a47b2a-4c12-4a9b-b24c-fce18392c4ee.png)
-   
-   ![aws5](https://user-images.githubusercontent.com/56577268/130196011-2e5193f2-8231-4b23-8f36-106e48ce3e13.png)
+   ![aws3](https://user-images.githubusercontent.com/56577268/130237405-380146b0-89cc-482d-9cbd-7e3b373a327a.PNG)
+   ![aws4](https://user-images.githubusercontent.com/56577268/130237427-4e9a3748-bac3-4691-b7ac-ae658deb9bda.PNG)
+   ![aws5](https://user-images.githubusercontent.com/56577268/130237443-5a2b2641-c155-4fa0-aadd-f6cf59c99f88.PNG)
    
    **Important**:  There are few modifications to be done in the code to make it work.
    
@@ -77,7 +74,7 @@ This section describes the steps to follow on IPAM as well as AWS to do the nece
                 
   **Note**: If the zones are distributed across different organizations in the IPAM, in such case, this code has capability to get the organization information from the tag                 ORGANIZATION added for the hosted zone in Route53. If this tag is not present, default ORG_NAME will be taken.
   
-  ![aws6](https://user-images.githubusercontent.com/56577268/130196769-6559eb25-d2cf-471e-a8c8-a8e25d2e89f3.png)
+  ![aws6](https://user-images.githubusercontent.com/56577268/130237720-713d24a9-ee10-4193-b134-a98c0e195349.PNG)
   
   3. **Create a cloudwatch rule that can trigger the above Lambda function when Route53 resource record changes take place.**
   
@@ -95,7 +92,7 @@ This section describes the steps to follow on IPAM as well as AWS to do the nece
           l. Click Configure details.
           m. Enter Name and Description and click Create rule.
           
-   ![aws7](https://user-images.githubusercontent.com/56577268/130197197-af693702-798c-4c94-b965-96819e8c44c6.png)
+   ![aws7](https://user-images.githubusercontent.com/56577268/130237816-99a437f6-6301-4706-a579-2644a1064d70.PNG)
    
 # Validation
 
