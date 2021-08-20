@@ -7,7 +7,7 @@ To achieve this, we will be utilizing the capability of AWS functionalities name
 
 This section describes the steps to follow on IPAM as well as AWS to do the necessary set up for the automation. 
 
-**Actions to be performed in the IPAM UI are listed below. **
+# Actions to be performed in the IPAM UI are listed below
     
    ## 1. Upload the Appliance certificate to the IPAM. 
    The server(appliance) certificate and client(user) certificate must be uploaded to IPAM to enable SSL authentication for rest API access from AWS Lambda. Self-signed certificates are provided for quick set up. The commands used to create self-signed certificates are provided in step 3. 
@@ -33,7 +33,7 @@ This section describes the steps to follow on IPAM as well as AWS to do the nece
          openssl req -new -key client.key -out client.csr  
          openssl x509 -req -in client.csr -CA rootCA.crt -CAkey rootCA.key -CAcreateserial -out client.crt -days 500 
          
-**Actions to be performed in the AWS console are listed below**
+# Actions to be performed in the AWS console are listed below
 
 **Note**: Select region as **N.Virginia** because Route53 logs events to cloud trail created in this region. 
 
@@ -43,9 +43,9 @@ This section describes the steps to follow on IPAM as well as AWS to do the nece
           b. Storage location: Select Create new S3 bucket or Select existing one. Disable the Log file SSE-KMS encryption if not needed. 
           c. Cloudwatch Logs: Enable cloudwatch logs. Enter a log group name or keep the default. Select IAM role as Existing and choose  CloudTrail_CloudWatchLogs_Role.
           d. Click Next. 
-          e. Click Next. Click Create trail. 
+          e. Click Next. Click Create trail.
          
-   ![aws1](https://user-images.githubusercontent.com/56577268/130194231-93312dd6-48eb-4e04-a1a9-186adf97ac5c.png)
+   ![aws1](https://user-images.githubusercontent.com/56577268/130236031-6b1a5345-e361-4558-bb17-4afbf190169f.PNG)
    
    ![aws2](https://user-images.githubusercontent.com/56577268/130194710-11158d4f-7c57-4bf1-b617-a23edabc89cd.png)
    
@@ -99,7 +99,7 @@ This section describes the steps to follow on IPAM as well as AWS to do the nece
    
 # Validation
 
-After doing the above set up, check the logs to see if the set-up is successful and the rest API calls are invoked to IPAM or not. To do that, open and verify AWS Cloudwatch -> Log groups -> (Log with the Lambda function name).
+After doing the above set up, check the logs to see if the set-up is successful and the rest API calls are invoked to IPAM or not. To do that, open and verify **AWS Cloudwatch** -> **Log groups** -> **(Log with the Lambda function name)**.
 
 On the IPAM end, check the log by navigating to **Infrastructure Management** -> **Performance Management** -> **IPAM Statistics** -> **Logs**. Select the **IPAM appliance** that is given in the Lambda function, select **IPAM Webserver Log** and click **Generate**.
 
