@@ -7,7 +7,7 @@ To achieve this, we will be utilizing the capability of AWS functionalities name
 
 This section describes the steps to follow on IPAM as well as AWS to do the necessary set up for the automation. 
 
-Actions to be performed in the IPAM UI are listed below. 
+**Actions to be performed in the IPAM UI are listed below. **
     
    ## 1. Upload the Appliance certificate to the IPAM. 
    The server(appliance) certificate and client(user) certificate must be uploaded to IPAM to enable SSL authentication for rest API access from AWS Lambda. Self-signed certificates are provided for quick set up. The commands used to create self-signed certificates are provided in step 3. 
@@ -33,7 +33,7 @@ Actions to be performed in the IPAM UI are listed below.
          openssl req -new -key client.key -out client.csr  
          openssl x509 -req -in client.csr -CA rootCA.crt -CAkey rootCA.key -CAcreateserial -out client.crt -days 500 
          
-Actions to be performed in the AWS console are listed below
+**Actions to be performed in the AWS console are listed below**
 
 **Note**: Select region as **N.Virginia** because Route53 logs events to cloud trail created in this region. 
 
