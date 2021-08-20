@@ -66,7 +66,7 @@ Actions to be performed in the AWS console are listed below
    ![aws3](https://user-images.githubusercontent.com/56577268/130195984-9306dc05-e4c4-4c4d-acee-09f1ee06a0a1.png)
 
    ![aws4](https://user-images.githubusercontent.com/56577268/130195998-b4a47b2a-4c12-4a9b-b24c-fce18392c4ee.png)
-
+   
    ![aws5](https://user-images.githubusercontent.com/56577268/130196011-2e5193f2-8231-4b23-8f36-106e48ce3e13.png)
    
    **Important**:  There are few modifications to be done in the code to make it work.
@@ -80,7 +80,7 @@ Actions to be performed in the AWS console are listed below
   
   ![aws6](https://user-images.githubusercontent.com/56577268/130196769-6559eb25-d2cf-471e-a8c8-a8e25d2e89f3.png)
   
-  3.	**Create a cloudwatch rule that can trigger the above Lambda function when Route53 resource record changes take place.**
+  3. **Create a cloudwatch rule that can trigger the above Lambda function when Route53 resource record changes take place.**
   
           a. Open Cloudwatch service and click Create rule.
           b. Choose Event Pattern in the Event Source section.
