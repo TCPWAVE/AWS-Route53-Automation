@@ -97,5 +97,18 @@ Actions to be performed in the AWS console are listed below
           m. Enter Name and Description and click Create rule.
           
    ![aws7](https://user-images.githubusercontent.com/56577268/130197197-af693702-798c-4c94-b965-96819e8c44c6.png)
+   
+# Validation
+
+After doing the above set up, check the logs to see if the set-up is successful and the rest API calls are invoked to IPAM or not. To do that, open and verify AWS Cloudwatch -> Log groups -> (Log with the Lambda function name).
+
+On the IPAM end, check the log by navigating to **Infrastructure Management** -> **Performance Management** -> **IPAM Statistics** -> **Logs**. Select the **IPAM appliance** that is given in the Lambda function, select **IPAM Webserver Log** and click **Generate**.
+
+**Note**: Make sure that the hosted zone where the resource records are updated is present in the IPAM before validating the set up.
+
+# Conclusion
+
+By following the above steps, AWS Route53 resource record changes will be automatically updated in the TCPWave IPAM without the need of manually doing Sync in the IPAM.
+
   
   
