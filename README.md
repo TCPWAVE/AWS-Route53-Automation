@@ -109,5 +109,6 @@ On the IPAM end, check the log by navigating to **Infrastructure Management** ->
 
 By following the above steps, AWS Route53 resource record changes will be automatically updated in the TCPWave IPAM without the need of manually doing Sync in the IPAM.
 
+
   
   
