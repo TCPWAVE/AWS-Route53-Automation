@@ -38,11 +38,64 @@ Actions to be performed in the AWS console are listed below
 
 **Note**: Select region as **N.Virginia** because Route53 logs events to cloud trail created in this region. 
 
-    1. Open CloudTrail service and create a trail. Cloudtrail writes the change events to cloudwatch  logs. These logs are stored in S3. 
+   1. Open CloudTrail service and create a trail. Cloudtrail writes the change events to cloudwatch  logs. These logs are stored in S3. 
     
-         a. Trail name: Enter a Trail name. 
-         b. Storage location: Select Create new S3 bucket or Select existing one. Disable the Log file SSE-KMS encryption if not needed. 
-         c. Cloudwatch Logs: Enable cloudwatch logs. Enter a log group name or keep the default. Select IAM role as Existing and choose  CloudTrail_CloudWatchLogs_Role.           
-         d. Click Next. 
-         e. Click Next. Click Create trail. 
+          a. Trail name: Enter a Trail name. 
+          b. Storage location: Select Create new S3 bucket or Select existing one. Disable the Log file SSE-KMS encryption if not needed. 
+          c. Cloudwatch Logs: Enable cloudwatch logs. Enter a log group name or keep the default. Select IAM role as Existing and choose  CloudTrail_CloudWatchLogs_Role.
+          d. Click Next. 
+          e. Click Next. Click Create trail. 
+         
    ![aws1](https://user-images.githubusercontent.com/56577268/130194231-93312dd6-48eb-4e04-a1a9-186adf97ac5c.png)
+   
+   ![aws2](https://user-images.githubusercontent.com/56577268/130194710-11158d4f-7c57-4bf1-b617-a23edabc89cd.png)
+   
+   2. **Create a Lambda function in N.Virginia region**. This function has the node js (14.x version) code that takes input from cloudwatch rule (will be created in the next step) and invokes rest API of TCPWave IPAM to add or delete the resource record based on the action(add/delete), using SSL authentication using certificates.
+   
+          a. Before creating the Lambda function, create an IAM role with the permissions: AmazonRoute53ReadOnlyAccess and AWSLambdaBasicExecutionRole.
+          b. Open the service Lambda and click Create function.
+          c. Function name: Enter a name.
+          d. Runtime: Select Node.js 14.x.
+          e. In Permissions section, expand Change default execution role, choose Use an existing role and select the IAM role created previously.
+          f. Click Creation function.
+          g. Open the function to make few configuration changes and add code to it.
+          h. Under Configuration tab, select General Configuration and click Edit in that section.
+          i. Change Timeout to 3min and 30sec and click Save.
+          j. Under Code tab, Select .zip file option from Upload File dropdown. Browse the r53_function.zip file provided. Click Save and click Ok.
+
+   ![aws3](https://user-images.githubusercontent.com/56577268/130195984-9306dc05-e4c4-4c4d-acee-09f1ee06a0a1.png)
+
+   ![aws4](https://user-images.githubusercontent.com/56577268/130195998-b4a47b2a-4c12-4a9b-b24c-fce18392c4ee.png)
+
+   ![aws5](https://user-images.githubusercontent.com/56577268/130196011-2e5193f2-8231-4b23-8f36-106e48ce3e13.png)
+   
+   **Important**:  There are few modifications to be done in the code to make it work.
+   
+   a. The below code snippet declares the default organization of the IPAM to change resource records in and the IPAM hostname. Change these settings and click Deploy.
+
+       var ORG_NAME = "xxxxxx";
+       var HOST = "xxx.xxxx.xxx";
+                
+  **Note**: If the zones are distributed across different organizations in the IPAM, in such case, this code has capability to get the organization information from the tag                 ORGANIZATION added for the hosted zone in Route53. If this tag is not present, default ORG_NAME will be taken.
+  
+  ![aws6](https://user-images.githubusercontent.com/56577268/130196769-6559eb25-d2cf-471e-a8c8-a8e25d2e89f3.png)
+  
+  3.	**Create a cloudwatch rule that can trigger the above Lambda function when Route53 resource record changes take place.**
+  
+          a. Open Cloudwatch service and click Create rule.
+          b. Choose Event Pattern in the Event Source section.
+          c. Service Name: Select Route53.
+          d. Event Type: Select AWS API Call via CloudTrail.
+          e. Choose Specific Operation(s).
+          f. Enter ChangeResourceRecordSets in the text box of Specific Operation(s).
+          g. Click Add Trigger.
+          h. Select Lambda Function as trigger.
+          i. Function: Select the  Lambda function created previously.
+          j. Expand Configure Input and choose Part of the matched event.
+          k. Enter $.detail.requestParameters in the text box.
+          l. Click Configure details.
+          m. Enter Name and Description and click Create rule.
+          
+   ![aws7](https://user-images.githubusercontent.com/56577268/130197197-af693702-798c-4c94-b965-96819e8c44c6.png)
+  
+  
