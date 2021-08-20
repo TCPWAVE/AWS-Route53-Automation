@@ -42,6 +42,6 @@ Actions to be performed in the AWS console are listed below
     
          a. Trail name: Enter a Trail name. 
          b. Storage location: Select Create new S3 bucket or Select existing one. Disable the Log file SSE-KMS encryption if not needed. 
-         c. Cloudwatch Logs: Enable cloudwatch logs. Enter a log group name or keep the default. Select IAM role as Existing and choose     CloudTrail_CloudWatchLogs_Role.           
+         c. Cloudwatch Logs: Enable cloudwatch logs. Enter a log group name or keep the default. Select IAM role as Existing and choose  CloudTrail_CloudWatchLogs_Role.           
          d. Click Next. 
          e. Click Next. Click Create trail. 
