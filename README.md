@@ -3,6 +3,9 @@ The objective of this document is to provide steps to follow to achieve AWS Rout
 
 To achieve this, we will be utilizing the capability of AWS functionalities namely **Cloudtrail, Cloudwatch, S3** and **Lambda** function. A cloudtrail is created to log the events to cloudwatch which are stored in S3 bucket. A cloudwatch  rule is created to trigger a Lambda function when it sees Route53 resource record change related events in the logs. Lambda function has the node js code to connect to IPAM and add/delete resource records through secure rest API invocations. 
 
+# Architectural Diagram
+![route53](https://user-images.githubusercontent.com/56577268/130421562-7bda2a9c-fc60-44ff-ac73-4c8be299590e.PNG)
+
 # Implementation Details 
 
 This section describes the steps to follow on IPAM as well as AWS to do the necessary set up for the automation. 
