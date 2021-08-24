@@ -70,8 +70,8 @@ This section describes the steps to follow on IPAM as well as AWS to do the nece
    
    **Important**:  There are few modifications to be done in the code to make it work.
    
-   a. The below code snippet declares the default organization of the IPAM to change resource records in and the IPAM hostname. Change these settings and click Deploy.
-
+   a. The below code snippet initializes the default organization of the zone in the IPAM and the IPAM hostname. Change these settings and click Deploy.
+   
        var ORG_NAME = "xxxxxx";
        var HOST = "xxx.xxxx.xxx";
                 
@@ -79,8 +79,8 @@ This section describes the steps to follow on IPAM as well as AWS to do the nece
             
    The zone changes will be reflected in the IPAM only when a tag with name **SYNC-IPAM** is present and has the value as **Yes** for the zone.
   
-  ![aws6](https://user-images.githubusercontent.com/56577268/130237720-713d24a9-ee10-4193-b134-a98c0e195349.PNG)
-  
+   ![route53-1](https://user-images.githubusercontent.com/56577268/130601230-22816355-7402-4b21-952c-4e7a66f9b30a.png)
+
   3. **Create a cloudwatch rule that can trigger the above Lambda function when Route53 resource record changes take place.**
   
           a. Open Cloudwatch service and click Create rule.
