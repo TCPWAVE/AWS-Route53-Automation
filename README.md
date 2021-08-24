@@ -76,6 +76,8 @@ This section describes the steps to follow on IPAM as well as AWS to do the nece
        var HOST = "xxx.xxxx.xxx";
                 
   **Note**: If the zones are distributed across different organizations in the IPAM, in such case, this code has capability to get the organization information from the tag                 ORGANIZATION added for the hosted zone in Route53. If this tag is not present, default ORG_NAME will be taken.
+            
+   The zone changes will be reflected in the IPAM only when a tag with name **SYNC-IPAM** is present and has the value as **Yes** for the zone.
   
   ![aws6](https://user-images.githubusercontent.com/56577268/130237720-713d24a9-ee10-4193-b134-a98c0e195349.PNG)
   
@@ -104,6 +106,69 @@ After doing the above set up, check the logs to see if the set-up is successful 
 On the IPAM end, check the log by navigating to **Infrastructure Management** -> **Performance Management** -> **IPAM Statistics** -> **Logs**. Select the **IPAM appliance** that is given in the Lambda function, select **IPAM Webserver Log** and click **Generate**.
 
 **Note**: Make sure that the hosted zone where the resource records are updated is present in the IPAM before validating the set up.
+
+# Resource Records Examples In Route53
+        {
+                "Comment": "CREATE",
+                 "Changes": [ {
+                             "Action": "CREATE",
+                            "ResourceRecordSet": {
+                                "Name": "www.newrrtest.com",
+                                    "Type": "A",
+                                     "TTL": 300,
+                                  "ResourceRecords": [{"Value": "10.0.0.1"}]
+                            }}
+                            ]
+          }
+          {
+                "Comment": "CREATE",
+                 "Changes": [ {
+                            "Action": "CREATE",
+                            "ResourceRecordSet": {
+                                 "Name": "ipv6.newrrtest.com",
+                                 "Type": "AAAA",
+                                  "TTL": 300,
+                                  "ResourceRecords": [{"Value": "5000::1"}]
+                           }}
+
+                             ]
+         }
+         {
+                "Comment": "CREATE",
+                 "Changes": [ {
+                            "Action": "CREATE",
+                            "ResourceRecordSet": {
+                                 "Name": "ftp.newrrtest.com",
+                                 "Type": "CNAME",
+                                  "TTL": 300,
+                                  "ResourceRecords": [{"Value": "www.newrrtest.com."}]
+                           }}
+                            ]
+        }
+        {
+                "Comment": "CREATE",
+                 "Changes": [ {
+                            "Action": "CREATE",
+                            "ResourceRecordSet": {
+                                 "Name": "mail.newrrtest.com",
+                                 "Type": "MX",
+                                  "TTL": 300,
+                                  "ResourceRecords": [{"Value": "10 www.newrrtest.com."}]
+                           }}
+                            ]
+         }
+         {
+                "Comment": "CREATE",
+                 "Changes": [ {
+                            "Action": "CREATE",
+                            "ResourceRecordSet": {
+                                 "Name": "srv.newrrtest.com",
+                                 "Type": "SRV",
+                                  "TTL": 300,
+                                  "ResourceRecords": [{"Value": "10 5 80 www.newrrtest.com."}]
+                           }}
+                             ]
+           }
 
 # Conclusion
 
